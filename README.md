@@ -1,11 +1,11 @@
 # Conversational CV
 
-An interactive voice-based CV: a conversational agent that answers questions
-about background, projects, and technical decisions in natural language using
-speech.
+This is my conversational CV. I am building an interactive voice-based CV: a
+conversational agent that answers questions about my background, my projects,
+and my technical decisions in natural language using speech.
 
 ## Starting point
 
-This repository begins with the product intention in [intention.md](./intention.md).
-That document defines the purpose, scope, framing, success criteria, and MVP for
-the project.
+I have captured my product intention in [intention.md](./intention.md). That
+document is where I define the purpose, scope, framing, success criteria, and
+MVP for this project.

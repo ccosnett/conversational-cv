@@ -26,6 +26,23 @@ const SUGGESTIONS = [
   "Why are you interested in voice and conversational AI?",
 ];
 
+function PhoneIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07A19.5 19.5 0 0 1 5.15 12.8 19.8 19.8 0 0 1 2.08 4.09 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.9.35 1.78.68 2.62a2 2 0 0 1-.45 2.11L8 9.94a16 16 0 0 0 6.06 6.06l1.49-1.29a2 2 0 0 1 2.11-.45c.84.33 1.72.56 2.62.68A2 2 0 0 1 22 16.92Z" />
+    </svg>
+  );
+}
+
 function CallUI() {
   const { connect, disconnect, status, messages, sendSessionSettings } =
     useVoice();
@@ -102,12 +119,13 @@ function CallUI() {
                 type="button"
                 onClick={handleClick}
                 disabled={isConnecting || loading}
-                className={`rounded-full px-6 py-3 text-base font-semibold transition ${
+                className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-base font-semibold transition ${
                   isConnected
                     ? "bg-red-500 text-white hover:bg-red-400"
                     : "bg-stone-950 text-stone-50 hover:bg-stone-800"
                 } disabled:cursor-not-allowed disabled:opacity-50`}
               >
+                {!isConnected ? <PhoneIcon /> : null}
                 {buttonLabel}
               </button>
 

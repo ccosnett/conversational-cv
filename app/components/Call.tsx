@@ -27,7 +27,8 @@ const SUGGESTIONS = [
 ];
 
 function CallUI() {
-  const { connect, disconnect, status, messages } = useVoice();
+  const { connect, disconnect, status, messages, sendSessionSettings } =
+    useVoice();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -46,17 +47,19 @@ function CallUI() {
       if (!res.ok) throw new Error(`Token fetch failed: ${res.status}`);
       const { accessToken, configId, sessionSettings } =
         (await res.json()) as TokenResponse;
+      const { type: _type, ...sessionSettingsMessage } = sessionSettings;
+
       await connect({
         auth: { type: "accessToken", value: accessToken },
         configId: configId || undefined,
-        sessionSettings,
       });
+      sendSessionSettings(sessionSettingsMessage);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unknown error");
     } finally {
       setLoading(false);
     }
-  }, [connect, disconnect, isConnected]);
+  }, [connect, disconnect, isConnected, sendSessionSettings]);
 
   const statusText = error
     ? `Error: ${error}`
